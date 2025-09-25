@@ -8,7 +8,7 @@ const fs = require('fs').promises;
 const path = require('path');
 
 // DEFINE A PORTA QUE O SERVIDOR IRÁ RODAR
-const Port = 3001;
+const Port = 5001;
 
 // INSTANCIANDO O EXPRESS
 const app = express();
@@ -21,7 +21,7 @@ app.use(cors());
 
 // CRIANDO O CAMINHO PARA LER O ARQUIVO DADOS.JSON
 
-const caminho = path.join(__dirname, "data", "dados.json");
+const caminho = path.join(__dirname, "data/dados.json");
 
 
 // CRIANDO A ROTA (post)
@@ -50,6 +50,8 @@ app.post("/clientes", async(req, res) => {
         // RETORNA A MENSAGEM
         res.status(201).json({mensagem: "Dados recebidos com sucesso"})
 
+        
+
 
     } catch(error){
         console.log("Erro ao manipular o arquivo", error);
@@ -57,6 +59,16 @@ app.post("/clientes", async(req, res) => {
     }
 });
 
+//ROTA PARA OBTER TODOS OS CLIENTES
+app.get("/clientes", async(req, res) =>{
+    try{
+        const data = await fs.readFile(caminho, "utf-8");
+        const clientes = JSON.parse(data);
+        res.status(200).json(clientes);
+    } catch (error) {
+        res.status(500).json({message:"Erro ao buscar dados"})
+    }
+})
 
 app.listen(Port, () => {
     console.log(`Servidor rodando na porta http:localhost:${Port}`);

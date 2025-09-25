@@ -1,10 +1,6 @@
 [
   {
-    "name": "Fiap",
-    "tipo": "Tecnologia"
-  },
-  {
-    "name": "teste1",
-    "tipo": "tec"
+    "nome": "Fiap",
+    "email": "fiap@fiap.com.br"
   }
 ]
