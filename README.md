@@ -66,4 +66,3 @@ server
 1º dentro da pasta backend ,no terminal digite: npm init -y
 
 2º touch server
-
